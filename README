@@ -1,11 +1,11 @@
 hello world with mpi_f08 module.
 
 
-dc-fukuoka@myubuntu:~/git/hello_mpif08$ make
+dc-fukuoka@myubuntu:~/git/hello_mpi_f08$ make
 mpif90  -g -O3 -mavx hello.F90 -o hello_mpi  
 mpif90 -fopenmp  -g -O3 -mavx hello.F90 -o hello_hyb
 
-dc-fukuoka@myubuntu:~/git/hello_mpif08$ grep "core id" /proc/cpuinfo 
+dc-fukuoka@myubuntu:~/git/hello_mpi_f08$ grep "core id" /proc/cpuinfo 
 core id		: 0
 core id		: 1
 core id		: 2
@@ -15,7 +15,7 @@ core id		: 1
 core id		: 2
 core id		: 3
 
-dc-fukuoka@myubuntu:~/git/hello_mpif08$ OMP_NUM_THREADS=1 KMP_AFFINITY=compact mpirun -bind-to hwthread --display-map -np 8 ./hello_hyb 
+dc-fukuoka@myubuntu:~/git/hello_mpi_f08$ OMP_NUM_THREADS=1 KMP_AFFINITY=compact mpirun -bind-to hwthread --display-map -np 8 ./hello_hyb 
  Data for JOB [5657,1] offset 0 Total slots allocated 8
 
  ========================   JOB MAP   ========================
@@ -41,7 +41,7 @@ myubuntu: MPI:   6/  8 OMP:   0/  1 cpu:  3
 myubuntu: MPI:   7/  8 OMP:   0/  1 cpu:  7
 
 
-dc-fukuoka@myubuntu:~/git/hello_mpif08$ OMP_NUM_THREADS=4 KMP_AFFINITY=compact mpirun --map-by socket:pe=2 --display-map -np 2 ./hello_hyb
+dc-fukuoka@myubuntu:~/git/hello_mpi_f08$ OMP_NUM_THREADS=4 KMP_AFFINITY=compact mpirun --map-by socket:pe=2 --display-map -np 2 ./hello_hyb
 [myubuntu:03246] SETTING BINDING TO CORE
  Data for JOB [7664,1] offset 0 Total slots allocated 4
 
